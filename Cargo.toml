@@ -1,0 +1,13 @@
+[package]
+name = "SillyBot"
+version = "0.1.0"
+edition = "2024"
+licence = "AGPL-3.0-only"
+
+[dependencies]
+csv = "1.4.0"
+tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
+[dependencies.serenity]
+default-features = true
+features = []
+version = "0.12"
