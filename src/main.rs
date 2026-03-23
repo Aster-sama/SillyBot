@@ -195,7 +195,9 @@ impl EventHandler for Handler {
             && msg.author.id.get() == 1458023696940929137
         {
             sleep(Duration::new(1, 0)).await;
-            let msgs = msg.reply_ping(&ctx.http, "AWAWA, my creators are lazy fuck and don't know how to use git and also they say they code like shit and no one should be exposed to their shit code and everything(read: its lazy and cant be bothered)").await;
+            let msgs = msg
+                .reply_ping(&ctx.http, "AWAWA, now you can see my bad code at https://github.com/Aster-sama/SillyBot/ qwq")
+                .await;
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
