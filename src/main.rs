@@ -52,7 +52,15 @@ impl EventHandler for Handler {
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
             }
-        } else if msg.content.contains("entris")
+        } else if msg.content.contains("ABABA") && !msg.author.bot {
+            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            sleep(Duration::new(2, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        }
+        else if msg.content.contains("entris")
             && msg.content.contains("oth side")
             && !msg.author.bot
         {
@@ -91,7 +99,7 @@ impl EventHandler for Handler {
             && !msg.author.bot
         {
             let builder = CreateMessage::new()
-                .content("IMNOTGAYIMABABAIMPLANTIMBOTIMAROIMACEIMAPLIMANATRACTIONALABABA");
+                .content("IMNOTGAYIMABABAIMPLANTIMBOTIMAROIMACEIMAPLIMANATTRACTIONALABABA");
             sleep(Duration::new(2, 0)).await;
             let msgs = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msgs {
@@ -136,6 +144,40 @@ impl EventHandler for Handler {
         {
             let builder = CreateMessage::new().content("https://tenor.com/view/touhou-murasa-dodge-go-shower-shower-gif-14832011749876304043");
             sleep(Duration::new(3, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        }
+        if (msg.content.contains("ay bot")
+            || msg.content.contains("ute bot")
+            || msg.content.contains("<@1468954832764276856>"))
+            && msg.content.contains("source")
+            && !msg.author.bot
+        {
+            let builder = CreateMessage::new()
+                .content("i am excelently coded at https://github.com/Aster-sama/SillyBot/");
+            sleep(Duration::new(3, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        }
+        if (msg.content.contains("ay bot")
+            || msg.content.contains("ute bot")
+            || msg.content.contains("<@1468954832764276856>"))
+            && msg.content.contains("straight")
+            && !msg.author.bot
+        {
+            let builder = CreateMessage::new()
+                .content("IMNOTSTRAIGHTIMABABAIMPLANTIMBOTIMAROIMACEIMAPLIMANATTRACTIONALABABA");
+            sleep(Duration::new(2, 0)).await;
+            let msgs = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msgs {
+                println!("Error sending message: {why:?}");
+            }
+            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
