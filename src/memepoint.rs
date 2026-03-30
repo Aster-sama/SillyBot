@@ -192,6 +192,33 @@ pub async fn calc_meme_points(
         };
         println!("{}", score);
         Ok(score)
+    } else if guild_id.get() == 1370394561117032538 {
+        let mut score: u32 = 0;
+        let mut rdr = csv::Reader::from_path("memerole/1370394561117032538")?;
+        let mut values: Vec<(u64, u32)> = vec![];
+        for result in rdr.records() {
+            let record = result?;
+            values.push((
+                record[0]
+                    .to_string()
+                    .parse()
+                    .expect("vro tried to string a number"),
+                record[1]
+                    .to_string()
+                    .parse()
+                    .expect("vro tried to string a number"),
+            ));
+        }
+        for role in roles {
+            for (n, value) in values.iter().enumerate() {
+                if role.get() == value.0 {
+                    score += value.1;
+                    values.remove(n);
+                    break;
+                }
+            }
+        }
+        Ok(score)
     } else {
         Ok(2)
     }
@@ -256,7 +283,6 @@ pub fn read_board(guildid: GuildId) -> Result<Vec<(String, String)>, Box<dyn std
     let name = "board/".to_owned() + &guildid.to_string();
     let mut rdr = csv::Reader::from_path(name)?;
     let mut output: Vec<(String, String)> = vec![];
-    output.push(("195219971754819584".to_string(), "6667".to_string()));
     for (n, result) in rdr.records().enumerate() {
         println!("{:?}", result);
         let record = result?;
@@ -268,7 +294,11 @@ pub fn read_board(guildid: GuildId) -> Result<Vec<(String, String)>, Box<dyn std
     Ok(output)
 }
 
-pub fn calc_max_points(theory: bool) -> Result<u32, Box<dyn std::error::Error>> {
+pub fn calc_max_points(
+    theory: bool,
+    guild_id: GuildId,
+    global: bool,
+) -> Result<u32, Box<dyn std::error::Error>> {
     let mut score: u32 = 0;
     let mut values: Vec<(u64, u32)> = vec![];
     let mut rdr = csv::Reader::from_path("memerole/653952153005588490")?;
@@ -354,16 +384,25 @@ pub fn genboard(guild_id: GuildId) -> Vec<(String, String, bool)> {
             false,
         ));
     }
+    if guild_id.get() == 653952153005588490 {
+        output.push((
+            "Maximum Meme Points Attainable Currently -".to_string(),
+            calc_max_points(false, guild_id, false)
+                .expect("cant calc max score")
+                .to_string(),
+            false,
+        ));
+        output.push((
+            "Maximum Meme Points Attainable Post-Major Quest 1 -".to_string(),
+            calc_max_points(true, guild_id, false)
+                .expect("cant calc max score")
+                .to_string(),
+            false,
+        ));
+    }
     output.push((
-        "Maximum Meme Points Attainable Currently -".to_string(),
-        calc_max_points(false)
-            .expect("cant calc max score")
-            .to_string(),
-        false,
-    ));
-    output.push((
-        "Maximum Meme Points Attainable Post-Major Quest 1 -".to_string(),
-        calc_max_points(true)
+        "Maximum Global Meme Points Economy -".to_string(),
+        calc_max_points(true, guild_id, true)
             .expect("cant calc max score")
             .to_string(),
         false,

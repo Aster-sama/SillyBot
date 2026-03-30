@@ -261,33 +261,31 @@ impl EventHandler for Handler {
     ) {
         println!("ohwowupdate!");
         println!("{:?}", event.roles);
-        if event.user.id.get() != 195219971754819584 {
-            let score = calc_meme_points(&ctx, event.guild_id, event.roles, event.user.id)
-                .await
-                .expect("awawa");
-            let _ = updateboard(event.guild_id, event.user.id, score);
-            let name = "board/".to_owned() + &event.guild_id.get().to_string() + ".id";
-            println!("{:?}", name);
-            let mut rdr = csv::Reader::from_path(name).expect("no message id file");
-            for result in rdr.records() {
-                let record = result.expect("no channelid in file");
-                let embed = CreateEmbed::new()
-                    .title("Totally Serious Leaderboard")
-                    .description("More points = You are a better being (/s)")
-                    .fields(genboard(event.guild_id));
-                let builder = EditMessage::new()
-                    .embed(embed)
-                    .content("# MEME ROLE LEADERBOARD");
-                let msg = ChannelId::new(record[0].parse().expect("id file not a number"))
-                    .edit_message(
-                        &ctx.http,
-                        record[1].parse::<u64>().expect("id file not a number"),
-                        builder,
-                    )
-                    .await;
-                if let Err(why) = msg {
-                    println!("Error sending message: {why:?}");
-                }
+        let score = calc_meme_points(&ctx, event.guild_id, event.roles, event.user.id)
+            .await
+            .expect("awawa");
+        let _ = updateboard(event.guild_id, event.user.id, score);
+        let name = "board/".to_owned() + &event.guild_id.get().to_string() + ".id";
+        println!("{:?}", name);
+        let mut rdr = csv::Reader::from_path(name).expect("no message id file");
+        for result in rdr.records() {
+            let record = result.expect("no channelid in file");
+            let embed = CreateEmbed::new()
+                .title("Totally Serious Leaderboard")
+                .description("More points = You are a better being (/s)")
+                .fields(genboard(event.guild_id));
+            let builder = EditMessage::new()
+                .embed(embed)
+                .content("# MEME ROLE LEADERBOARD");
+            let msg = ChannelId::new(record[0].parse().expect("id file not a number"))
+                .edit_message(
+                    &ctx.http,
+                    record[1].parse::<u64>().expect("id file not a number"),
+                    builder,
+                )
+                .await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
             }
         }
     }
