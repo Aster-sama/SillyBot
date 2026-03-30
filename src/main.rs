@@ -52,6 +52,13 @@ impl EventHandler for Handler {
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
             }
+        } else if msg.content.contains("github.com/Aster-sama/SillyBot/") && !msg.author.bot {
+            let builder = CreateMessage::new().content("talking about me? uwu");
+            sleep(Duration::new(2, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
         } else if msg.content.contains("ABABA") && !msg.author.bot {
             let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
             sleep(Duration::new(2, 0)).await;
@@ -117,6 +124,23 @@ impl EventHandler for Handler {
         {
             let builder = CreateMessage::new()
                 .content("NOIMNOTCUTEIMABABAIMPLANTIMBOTYOUCUTEYOUSILLYIMSILLY");
+            sleep(Duration::new(2, 0)).await;
+            let msgs = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msgs {
+                println!("Error sending message: {why:?}");
+            }
+            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            sleep(Duration::new(1, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        } else if (msg.content.contains("bot") || msg.content.contains("<@1468954832764276856>"))
+            && msg.content.contains("illy")
+            && !msg.author.bot
+        {
+            let builder = CreateMessage::new()
+                .content("YESIMSILLYOUSILLYIMNOTCUTETHOYOUCUTEIMABABAIMPLANTIMBOTABABA");
             sleep(Duration::new(2, 0)).await;
             let msgs = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msgs {
