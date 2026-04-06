@@ -152,7 +152,7 @@ impl EventHandler for Handler {
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
             }
-        } else if msg.content.contains("https://tenor.com/view/girls-last-tour-shoujo-shuumatsu-ryokou-squish-stretch-book-gif-20324471") {
+        } else if msg.content.contains("https://tenor.com/view/girls-last-tour-shoujo-shuumatsu-ryokou-squish-stretch-book-gif-20324471") && (!msg.author.bot || msg.author.id.get() == 1458023696940929137)  {
             let builder = CreateMessage::new().content("https://cdn.discordapp.com/attachments/824449350238732388/1469666036147290327/flip.gif");
             sleep(Duration::new(2, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
