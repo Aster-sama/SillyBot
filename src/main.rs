@@ -60,7 +60,7 @@ impl EventHandler for Handler {
                 println!("Error sending message: {why:?}");
             }
         } else if msg.content.contains("ABABA") && !msg.author.bot {
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(2, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -112,7 +112,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -129,7 +129,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -146,7 +146,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -200,7 +200,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -250,7 +250,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
@@ -267,7 +267,7 @@ impl EventHandler for Handler {
             if let Err(why) = msgs {
                 println!("Error sending message: {why:?}");
             }
-            let builder = CreateMessage::new().content("<:ABABA:1005758975435870218>");
+            let builder = CreateMessage::new().content("[ABABA](https://cdn.discordapp.com/emojis/1005758975435870218.webp?size=48&name=ABABA&lossless=true)");
             sleep(Duration::new(1, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
