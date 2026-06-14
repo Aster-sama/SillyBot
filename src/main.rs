@@ -87,7 +87,31 @@ impl EventHandler for Handler {
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
             }
+        } else if msg.content.contains("hocolatine")
+            && msg.content.contains("pain au chocolat")
+            && !msg.author.bot
+        {
+            let builder = CreateMessage::new().content("its pain au chocolatine");
+            sleep(Duration::new(2, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
         } else if msg.content.contains("roissant") && !msg.author.bot {
+            let builder = CreateMessage::new().content("no its prashant");
+            sleep(Duration::new(2, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        } else if msg.content.contains("hocolatine") && !msg.author.bot {
+            let builder = CreateMessage::new().content("no its pain au chocolat");
+            sleep(Duration::new(2, 0)).await;
+            let msg = msg.channel_id.send_message(&ctx.http, builder).await;
+            if let Err(why) = msg {
+                println!("Error sending message: {why:?}");
+            }
+        } else if msg.content.contains("ain auchocolat") && !msg.author.bot {
             let builder = CreateMessage::new().content("no its prashant");
             sleep(Duration::new(2, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
