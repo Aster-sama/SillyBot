@@ -112,7 +112,7 @@ impl EventHandler for Handler {
                 println!("Error sending message: {why:?}");
             }
         } else if msg.content.contains("ain au chocolat") && !msg.author.bot {
-            let builder = CreateMessage::new().content("no its prashant");
+            let builder = CreateMessage::new().content("no its chocolatine");
             sleep(Duration::new(2, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
             if let Err(why) = msg {
