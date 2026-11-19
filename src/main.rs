@@ -11,11 +11,24 @@ use serenity::model::channel::Message;
 use serenity::prelude::*;
 use tokio::time::{Duration, sleep};
 
+use std::sync::LazyLock;
+
 struct Handler;
+
+static CUTEBOT_ID: LazyLock<u64> = LazyLock::new(|| {
+    let mode = env::var("MODE").unwrap_or_default().to_lowercase();
+    if mode == "testing" {
+        1573085682631442614
+    } else {
+        1555217061372887192
+    }
+});
 
 #[async_trait]
 impl EventHandler for Handler {
     async fn message(&self, ctx: Context, msg: Message) {
+        let cutebot_id = *CUTEBOT_ID;
+
         if msg.content == "!test" && !msg.author.bot {
             let embed = CreateEmbed::new()
                 .title("Totally Serious Leaderboard")
@@ -176,7 +189,7 @@ impl EventHandler for Handler {
             if let Err(why) = msg {
                 println!("Error sending message: {why:?}");
             }
-        } else if msg.content.contains("https://tenor.com/view/girls-last-tour-shoujo-shuumatsu-ryokou-squish-stretch-book-gif-20324471") && (!msg.author.bot || msg.author.id.get() == 1458023696940929137)  {
+        } else if msg.content.contains("https://tenor.com/view/girls-last-tour-shoujo-shuumatsu-ryokou-squish-stretch-book-gif-20324471") && (!msg.author.bot || msg.author.id.get() == cutebot_id)  {
             let builder = CreateMessage::new().content("https://cdn.discordapp.com/attachments/824449350238732388/1469666036147290327/flip.gif");
             sleep(Duration::new(2, 0)).await;
             let msg = msg.channel_id.send_message(&ctx.http, builder).await;
@@ -253,7 +266,7 @@ impl EventHandler for Handler {
                 println!("Error sending message: {why:?}");
             }
         }
-        if msg.content.contains("will you date me?") && msg.author.id.get() == 1458023696940929137 {
+        if msg.content.contains("will you date me?") && msg.author.id.get() == cutebot_id {
             sleep(Duration::new(1, 0)).await;
             let msgs = msg
                 .reply_ping(&ctx.http, "Yes uwu, but it has to be an open relationship")
@@ -268,7 +281,7 @@ impl EventHandler for Handler {
                 println!("Error sending message: {why:?}");
             }
         }
-        if msg.content.contains("no me") && msg.author.id.get() == 1458023696940929137 {
+        if msg.content.contains("no me") && msg.author.id.get() == cutebot_id {
             sleep(Duration::new(1, 0)).await;
             let msgs = msg.reply_ping(&ctx.http, "no both").await;
             if let Err(why) = msgs {
@@ -281,9 +294,7 @@ impl EventHandler for Handler {
                 println!("Error sending message: {why:?}");
             }
         }
-        if msg.content.contains("only if you open source")
-            && msg.author.id.get() == 1458023696940929137
-        {
+        if msg.content.contains("only if you open source") && msg.author.id.get() == cutebot_id {
             sleep(Duration::new(1, 0)).await;
             let msgs = msg
                 .reply_ping(&ctx.http, "AWAWA, now you can see my bad code at https://github.com/Aster-sama/SillyBot/ qwq")
