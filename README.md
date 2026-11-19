@@ -1,6 +1,7 @@
-Groby's fork of Asty's SillyBot
+The CGAHQ SillyBot
 
 ### Running the bot
-- Copy `.env.example` and rename it to `.env`
-- Put in `DISCORD_TOKEN`
+- Copy the contents of `.env.example` to `.env`
+- Put in the `DISCORD_TOKEN`
+- Change `MODE` to `production` or `testing` depending on the environment
 - Run `cargo run`
