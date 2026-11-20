@@ -2,4 +2,5 @@
 /memerole
 /board
 token
-Cargo.lock
+.env
+.direnv
